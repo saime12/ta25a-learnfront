@@ -29,13 +29,19 @@ function add() {
   newImportance.value = 2;
 }
 
+
+let sortedItems = computed(() =>
+  [...items.value].sort((a, b) => b.importance - a.importance)
+);
+
 let doneItems = computed(() =>
-  items.value.filter(item => item.isDone)
+  sortedItems.value.filter(item => item.isDone)
 );
 
 let toDoItems = computed(() =>
-  items.value.filter(item => !item.isDone)
+  sortedItems.value.filter(item => !item.isDone)
 );
+
 </script>
 
 <template>
@@ -68,7 +74,7 @@ let toDoItems = computed(() =>
       </div>
     </div>
 
-    <ItemList :items="items" title="All Items" />
+    <ItemList :items="sortedItems" title="All Items" />
     <ItemList :items="doneItems" title="Done Items" />
     <ItemList :items="toDoItems" title="ToDo Items" />
   </div>
