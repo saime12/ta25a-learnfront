@@ -1,4 +1,3 @@
-
 <script setup>
 defineProps(['items', 'title']);
 </script>
