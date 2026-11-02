@@ -8,10 +8,18 @@ defineProps(['items', 'title']);
 
   <ul>
     <li v-for="item in items" :key="item.id">
-      {{ item.text }} - 
-      <span v-if="item.importance === 3">High</span>
-      <span v-else-if="item.importance === 2">Medium</span>
-      <span v-else>Low</span>
+      <span
+        :class="{
+          'has-text-danger': item.importance === 3,
+          'has-text-warning': item.importance === 2,
+          'has-text-success': item.importance === 1
+        }"
+      >
+        {{ item.text }} -
+        <span v-if="item.importance === 3">High</span>
+        <span v-else-if="item.importance === 2">Medium</span>
+        <span v-else>Low</span>
+      </span>
 
       <input type="checkbox" v-model="item.isDone">
     </li>
